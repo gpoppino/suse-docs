@@ -6,7 +6,7 @@ page](https://www.suse.com/documentation/)
 These are:
 
 - [**SUSE Manager 3**](suma/)
-- ... and more to come
+- [**SLEPOS 11 SP3**](slepos/)
 
 ---
 
