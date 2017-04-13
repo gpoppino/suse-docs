@@ -1,7 +1,7 @@
 # How to configure an Admin and Branch server for SLEPOS 11 SP3
 
 First of all, you can use my SLEPOS scripts located at
-(https://github.com/gpoppino/suse-toolbox) (the ones starting with slepos) to
+[suse-toolbox](https://github.com/gpoppino/suse-toolbox) (the ones starting with slepos) to
 perform the tasks described here without typing all these commands and in a
 easier way.
 
@@ -69,8 +69,10 @@ posAdmin \
 
 - Add network card information:
 
-`posAdmin --base cn=bs,cn=server,cn=mybranch,ou=myou,o=myorg,c=ar --add --scNetworkcard \
---scDevice eth0 --ipHostNumber 10.0.0.1`
+```
+posAdmin --base cn=bs,cn=server,cn=mybranch,ou=myou,o=myorg,c=ar --add --scNetworkcard \
+--scDevice eth0 --ipHostNumber 10.0.0.1
+```
 
 - Add DNS, DHCP (if needed), TFTP and posleases services:
 
@@ -107,8 +109,10 @@ posAdmin \
 --scServiceStatus TRUE
 ```
 
-- Add cash register:
- - Add a default cash register:
+### Add a cash register
+You can add a cash register object to LDAP in _legacy mode_ or using _roles_.
+
+ - Add a default cash register (in legacy mode):
 ```
 posAdmin --base cn=global,o=myorg,c=ar --add --scCashRegister --cn cr-default \
 --scCashRegisterName default \
@@ -116,10 +120,12 @@ posAdmin --base cn=global,o=myorg,c=ar --add --scCashRegister --cn cr-default \
 ```
 
  - Add ramdisk (optional - if no hard disk is available):
- `posAdmin --base cn=cr-default,cn=global,o=myorg,c=ar --add --scRamDisk --cn ram \
---scDevice /dev/ram0`
+```
+posAdmin --base cn=cr-default,cn=global,o=myorg,c=ar --add --scRamDisk --cn ram \
+--scDevice /dev/ram0
+```
 
- - Add harddisk to image:
+ - Add hard disk to image:
 ```
 posAdmin --base cn=cr-default,cn=global,o=myorg,c=ar --add --scHarddisk --cn sda \
 --scDevice /dev/sda --scHdSize 16384
@@ -148,9 +154,10 @@ posAdmin \
 ```
 
 - Add cash register using global roles (preferred method):
-
-`posAdmin --base cn=global,o=myorg,c=ar --add --scRole --cn myrole \
---scRoleName 'My Role 01' --scRoleDescription 'My role'`
+```
+posAdmin --base cn=global,o=myorg,c=ar --add --scRole --cn myrole \
+--scRoleName 'My Role 01' --scRoleDescription 'My role'
+```
 
  - Add a cash register to role:
 ```
@@ -163,10 +170,8 @@ posAdmin --base cn=myrole,cn=global,o=myorg,c=ar --add --scCashRegister \
 ```
 posAdmin --base cn=cr-default,cn=myrole,cn=global,o=myorg,c=ar --add \
 --scHarddisk --cn sda --scDevice /dev/sda --scHdSize 16384
-
 posAdmin --base cn=sda,cn=cr-default,cn=myrole,cn=global,o=myorg,c=ar --add --scPartition \
 --scPartNum 0 --scPartType 82 --scPartMount x --scPartSize 2048
-
 posAdmin --base cn=sda,cn=cr-default,cn=myrole,cn=global,o=myorg,c=ar --add --scPartition \
 --scPartNum 1 --scPartType 83 --scPartMount '/' --scPartSize 14336
 ```
@@ -179,7 +184,7 @@ posAdmin \
 --scConfigFileLocalPath /srv/SLEPOS/config/jpos.xml
 ```
 
---- Enable roles for branch:
+- Enable roles for branch:
 ```
 posAdmin --DN cn=mybranch,ou=myou,o=myorg,c=ar --modify --scLocation --scAllowRoles TRUE
 posAdmin --DN cn=mybranch,ou=myou,o=myorg,c=ar --modify --scLocation --scAllowGlobalRoles TRUE
@@ -197,7 +202,6 @@ posAdmin \
 ```
 
  - With registerImanges (preferred method):
-
 ```
 registerImages --ldap --gzip \
 --kernel /var/lib/SLEPOS/system/images/GraphicalImage-3.1.5/initrd*.kernel \
@@ -212,10 +216,10 @@ registerImages --ldap --gzip \
 
 ## Configure Branch Server - Manual installation
 
+- Init the branch server:
 `posInitBranchServer`
 
 - Sync images to Branch Server:
-
 `possyncimages`
 
 - Start posASWatch service
