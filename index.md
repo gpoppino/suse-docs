@@ -8,7 +8,7 @@ These are:
 - [**SUSE Manager 3**](suma/)
 - ... and more to come
 
---
+---
 
 > This documentation is distributed in the hope that it will be useful,
 > but WITHOUT ANY WARRANTY; without even the implied warranty of
