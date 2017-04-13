@@ -18,11 +18,15 @@ fit. In this example, I use:
 
 - Init the Admin server:
 
-`posInitAdminserver`
+```
+posInitAdminserver
+```
 
 - Check the LDAP structure:
 
-`posAdmin --query`
+```
+posAdmin --query
+```
 
 ## Configure Branch server
 
@@ -30,7 +34,9 @@ Run `posAdmin` commands on the Admin server.
 
 - Create Organization Unit:
 
-`posAdmin --base o=myorg,c=ar --add --organizationalUnit --ou myou --description 'My description'`
+```
+posAdmin --base o=myorg,c=ar --add --organizationalUnit --ou myou --description 'My description'
+```
 
 - Create location container (branch server - with DHCP):
 ```
@@ -60,12 +66,15 @@ posAdmin \
 
 - Add server container object:
 
-`posAdmin --base cn=mybranch,ou=myou,o=myorg,c=ar --add --scServerContainer --cn server`
+```
+posAdmin --base cn=mybranch,ou=myou,o=myorg,c=ar --add --scServerContainer --cn server
+```
 
 - Add branch server object:
 
-`posAdmin --base cn=server,cn=mybranch,ou=myou,o=myorg,c=ar --add --scBranchServer --cn bs`
-
+```
+posAdmin --base cn=server,cn=mybranch,ou=myou,o=myorg,c=ar --add --scBranchServer --cn bs
+```
 
 - Add network card information:
 
@@ -190,7 +199,7 @@ posAdmin --DN cn=mybranch,ou=myou,o=myorg,c=ar --modify --scLocation --scAllowRo
 posAdmin --DN cn=mybranch,ou=myou,o=myorg,c=ar --modify --scLocation --scAllowGlobalRoles TRUE
 ```
 
-- Add POS Image:
+### Add POS Image object
 
  - With posAdmin
 ```
@@ -211,16 +220,24 @@ registerImages --ldap --gzip \
 
 - Create delta for new image:
 
-`registerImages --delta GraphicalImage.i686-3.1.5 --ldap --move /var/lib/SLEPOS/system/images/GraphicalImage-3.1.6/GraphicalImage.i686-3.1.6`
+```
+registerImages --delta GraphicalImage.i686-3.1.5 --ldap /var/lib/SLEPOS/system/images/GraphicalImage-3.1.6/GraphicalImage.i686-3.1.6
+```
 
 
 ## Configure Branch Server - Manual installation
 
 - Init the branch server:
-`posInitBranchServer`
+
+```
+posInitBranchServer
+```
 
 - Sync images to Branch Server:
-`possyncimages`
+
+```
+possyncimages
+```
 
 - Start posASWatch service
 ```
@@ -234,11 +251,13 @@ insserv ldap
 rcldap start
 ```
 
-## Branch Server for offline image installation
+## Setup branch server image for offline installation
 
 - Generate OIF file for offline initialization:
 
+```
 posAdmin --base cn=mybranch,ou=myou,o=myorg,c=ar --generate
+```
 
 OIF file is generated under /usr/share/SLEPOS/OIF. Example:
 
@@ -260,7 +279,9 @@ Note: Always run posAdmin commands on the admin server.
 
 - How to remove an object:
 
-`posAdmin --remove --DN cn=cr-default,cn=global,o=myorg,c=ar`
+```
+posAdmin --remove --DN cn=cr-default,cn=global,o=myorg,c=ar
+```
 
 - How to modify an object:
 ```
@@ -269,15 +290,21 @@ posAdmin --DN cn=cr-default,cn=global,o=myorg,c=ar --modify \
 ```
 
 - How to clear a value (modify):
-`posAdmin --DN cn=GraphicalImage,cn=default,cn=global,o=myorg,c=ar --modify --scPosImage --scPosImageVersion ""`
+```
+posAdmin --DN cn=GraphicalImage,cn=default,cn=global,o=myorg,c=ar --modify --scPosImage --scPosImageVersion ""
+```
 
 - How to change Branch Server's password:
 
-`posInitBranchServer --chpasswd`
+```
+posInitBranchServer --chpasswd
+```
 
 - How to create password for users in image definition (config.xml):
 
-`kiwi --createpassword`
+```
+kiwi --createpassword
+```
 
 - Modify xorg.conf file (To update md5 hash)
 ```
