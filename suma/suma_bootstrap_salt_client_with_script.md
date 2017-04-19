@@ -8,7 +8,7 @@
 
 `# mgr-create-bootstrap-repo -l`
 
-- Subscribe to the necessary repos:
+- Create the necessary bootstrap repos. For example:
 
 ```
 # mgr-create-bootstrap-repo -c SLE-11-SP3-x86_64
