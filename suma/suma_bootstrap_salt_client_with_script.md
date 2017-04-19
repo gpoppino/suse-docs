@@ -16,7 +16,7 @@
 # mgr-create-bootstrap-repo -c SLE-11-SP4-x86_64
 ```
 
-- Edit the needed bootscript script to add the activation key:
+- Edit the needed bootstrap script to add the activation key:
 
 ```
 # cd /srv/www/htdocs/pub/bootstrap
