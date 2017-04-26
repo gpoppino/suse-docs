@@ -10,9 +10,9 @@ The procedures are:
 
 - [How to bootstrap a Salt client with a script](suma_bootstrap_salt_client_with_script.md)
 - [How to create staging of repos by
-  date](suma_create_staging_of_repos_by_date)
-- [How to register with SCC](suma_how_to_register_with_scc.html)
-- [How to remove a SUMA channel](suma_how_to_remove_a_channel.html)
+  date](suma_create_staging_of_repos_by_date.md)
+- [How to register with SCC](suma_how_to_register_with_scc.md)
+- [How to remove a SUMA channel](suma_how_to_remove_a_channel.md)
 - [How to migrate from OSAD client to a Salt client](suma_migrate_from_osad_to_salt_client.md)
 - [How to partition a SUMA server](suma_partitioning.md)
 - [Patching a SUMA server](suma_patch_suse_manager.md)
