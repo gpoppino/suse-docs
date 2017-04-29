@@ -3,9 +3,9 @@
 This procedure describes how to remove or unsubscribe from a channel. It does
 not delete it permanently. Only deletes its contents and synchronization status.
 
-- Look for the channel name (right column):
+- Look for the channel name:
 
-`# mgr-sync list channels`
+`# spacecmd softwarechannel_list`
 
 - Remove the channel:
 
