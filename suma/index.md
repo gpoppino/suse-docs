@@ -18,3 +18,4 @@ The procedures are:
 - [Patching a SUMA server](suma_patch_suse_manager.md)
 - [Setup system provisioning with SUMA](suma_setup_for_system_provisioning.md)
 - [How to schedule scan with OpenSCAP](suma_schedule_openscap.md)
+- [How to bootstrap a cloned VM](suma_bootstrap_cloned_vm.md)
