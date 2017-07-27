@@ -1,8 +1,8 @@
-# How to register a salt client with a bootstrap script
+# How to register a salt client with a bootstrap script in SUMA 3.1
 
 - Create a bootstrap script for salt:
 
-`# mgr-bootstrap --salt`
+`# mgr-bootstrap`
 
 - List available repos for bootstrapping systems:
 
