@@ -3,7 +3,7 @@
 - Connect to the SUMA DB
  ```
   # su - postgres
-  # psql -d susemanager
+  $ psql -d susemanager
  ```
 
 - List the tables:
