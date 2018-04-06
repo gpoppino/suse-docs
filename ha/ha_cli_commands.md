@@ -1,0 +1,39 @@
+# Useful HA commands (pacemaker)
+
+- Check cluster status (Ctrl-c to exit):
+	- General: `crm_mon` o `crm status`
+	- View resources grouped by node: `crm_mon -n`
+	- View inactive resources, node atributes, fail counts and recent operations: `crm_mon -nrofA`
+	- One-shot: `crm_mon -1`
+- Work with resources, nodes and check the cluster configuration:
+	- View resources and their status: `crm resource show`
+	- Shows node information: `crm node show`
+	- Stop a resource: `crm resource stop resource-name`
+	- Start a resource: `crm resource start resource-name`
+	- View the status of a resource: `crm resource status resource-name`
+	- Show cluster configuration: `crm configure show`
+	- View scores: `crm resource scores`
+	- Reset the score of a resource: `crm resource cleanup resource-name`
+	- Migrate a resource: `crm resource migrate resource-name`
+	- Remove temporal location constraints (migration): `crm resource unmigrate resource-name`
+   - Maintenance:
+	- Put a node in _standby_: `crm node standby node1`
+	- Put a node _online_ (opposite to standby): `crm node online node1`
+	- Start cluster service in one node: `systemctl start pacemaker`
+	- View status of cluster service: `systemctl status pacemaker`
+	- Enable trace mode for a resource: `crm resource trace resource-name`
+	- Disable trace mode for a resource: `crm resource untrace resource-name`
+	- Put cluster in maintenance mode: `crm configure property maintenance-mode=true`
+	- End maintenance mode for cluster: `crm configure property maintenance-mode=false`
+	- Put a resource in maintenance node: `crm node maintenance node1`
+	- Remove maintenance mode for a node: `crm node ready node1`
+	- Put a resource in maintenance mode: `crm resource meta resource-name set maintenance true`
+	- Remove maintenance mode for a node: `crm resource meta resource-name set maintenance false`
+	- Run cluster healthcheck: `crm cluster health`
+	- Generate report from 8 AM until current time: `hb_repot -f 8:00 report_800-now`
+- Storage related commands:
+	- Start multipath service: `systemctl start multipathd`
+	- Stop multpath service: `systemctl stop multipathd`
+	- Verify status of multipath: `multipath -ll`
+- HAWK URL and port (web tool): `https://NODE-IP:7630`. User “hacluster”.
+
