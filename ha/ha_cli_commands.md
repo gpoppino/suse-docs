@@ -16,7 +16,7 @@
 	- Reset the score of a resource: `crm resource cleanup resource-name`
 	- Migrate a resource: `crm resource migrate resource-name`
 	- Remove temporal location constraints (migration): `crm resource unmigrate resource-name`
-   - Maintenance:
+- Maintenance:
 	- Put a node in _standby_: `crm node standby node1`
 	- Put a node _online_ (opposite to standby): `crm node online node1`
 	- Start cluster service in one node: `systemctl start pacemaker`
