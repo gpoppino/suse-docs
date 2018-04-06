@@ -1,4 +1,4 @@
-# HowTos about SUSE Manager 3.x (SUMA)
+# HOWTOs about SUSE Manager 3.x (SUMA)
 This page contains a list of links to procedures on how to do some specific
 tasks on SUMA 3.x.
 
@@ -17,4 +17,5 @@ The procedures are:
 - [How to partition a SUMA server](suma_partitioning.md)
 - [Patching a SUMA server](suma_patch_suse_manager.md)
 - [Setup system provisioning with SUMA](suma_setup_for_system_provisioning.md)
-
+- [How to schedule scan with OpenSCAP](suma_schedule_openscap.md)
+- [How to bootstrap a cloned VM](suma_bootstrap_cloned_vm.md)
