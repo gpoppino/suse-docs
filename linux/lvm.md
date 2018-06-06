@@ -31,7 +31,7 @@ Another option is to create a new additional partition along the existing one. F
 
 1. After expanding the disk, reboot or rescan disk with: `echo 1 > /sys/class/block/sdb/device/rescan`
 2. Verify the disk has the correct new size: `parted /dev/sdb print`
-3. Create a new, larger partition and set LVM flag on: `parted /dev/sdb mkpart primary ext2 0% 100%; parted /dev/sdb set 1 lvm on`
+3. Create a new, larger partition and set LVM flag on: `parted /dev/sdb mkpart primary ext2 0% 100%; parted /dev/sdb set 2 lvm on`
 4. Create a new physical volume: `pvcreate /dev/sdb2`
 5. Extend the volume group: `vgextend myvg /dev/sdb2`
 6. Extend the logical volume: `lvextend -l 100%FREE /dev/myvg/mylv`
