@@ -8,6 +8,15 @@
 
 ![Libvirt](libvirt_support.svg)
 
+### Adding permissions for using libvirt
+
+- Add user to the libvirt group: `usermod --append --groups libvirt gpoppino`
+  - This group is specified in option `unix_sock_group` in `/etc/libvirt/libvirtd.conf`
+
+## Libvirtd
+
+- Check that libvirtd is running: `systemctl status libvirtd`
+
 ## KVM Tools
 
 Some of the command line tools are:
@@ -64,6 +73,6 @@ Graphical tools are:
 - List networks: `virsh net-list`
 - Edit an existing network: `virsh net-edit NETWORK_NAME`
 
-## Libvirtd
+## Reference
 
-- Check that libvirtd is running: `systemctl status libvirtd`
+[Official SUSE Documentation for Virtualization on SLES 12](https://www.suse.com/documentation/sles-12/singlehtml/book_virt/book_virt.html)
