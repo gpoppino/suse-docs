@@ -19,6 +19,21 @@
 
 ## KVM Tools
 
+### Installation of the KVM hypervisor and its tools
+
+- Select the _system role_ "KVM Virtualization Host" during installation:
+
+![KVM System Role](https://www.suse.com/documentation/sles-12/book_sle_deployment/graphics/install_system_role.png)
+
+Or
+
+- Go to _YaST -> Virtualization -> Install Hypervisor and Tools_
+  - Select options _KVM Server_ and _KVM Tools_
+
+![KVM Server and KVM Tools](https://www.suse.com/documentation/sles-12/singlehtml/book_virt/images/yast2_hypervisors.png)
+
+### Tools
+
 Some of the command line tools are:
 
 - virsh: operate on VMs.
@@ -30,11 +45,6 @@ Graphical tools are:
 
 - virt-manager: GUI to work with VMs.
 - virt-viewer: display a graphical console for a VM.
-
-### Installation of the KVM hypervisor and its tools
-
-- Go to _YaST -> Virtualization -> Install Hypervisor and Tools_
-  - Select options _KVM Server_ and _KVM Tools_
 
 ### Working with VMs
 
