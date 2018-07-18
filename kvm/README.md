@@ -46,6 +46,24 @@ Graphical tools are:
 - virt-manager: GUI to work with VMs.
 - virt-viewer: display a graphical console for a VM.
 
+### Connecting
+
+Set the variable _LIBVIRT_DEFAULT_URI_ to:
+
+- `qemu:///system`: connect locally as root to the daemon supervising QEmu and KVM domains
+- `qemu:///session`: connect locally as a normal user to his own set of QEmu and KVM domains
+
+For example:
+
+```bash
+export LIBVIRT_DEFAULT_URI=qemu:///system
+virsh list --all
+```
+
+Otherwise, use _-c_ or _--connect_:
+  - `virsh -c qemu:///system list --all`
+  - `virsh -c qemu+ssh://gpoppino@lab/system list --all`
+
 ### Working with VMs
 
 - List domains (inactive and active): `virsh list --all`
