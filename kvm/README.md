@@ -74,6 +74,25 @@ Otherwise, use _-c_ or _--connect_:
 - Reboot a VM: `virsh reboot VM_NAME`
 - Delete a VM: `virsh undefine VM_NAME; virsh vol-delete --pool default VM_IMAGE.qcow2`
 
+### Connecting to the console
+
+Procedure for SLES11:
+
+1. Edit _/etc/inittab_ and uncomment the following line: `S0:12345:respawn:/sbin/agetty -L 9600 ttyS0 vt102`
+2. Run `telinit q`
+3. If you want to login with root, edit _/etc/securetty_ and add the _ttyS0_.
+
+In SLES12:
+
+1. Run the following commands:
+
+```bash
+  systemctl enable serial-getty@ttyS0.service
+  systemctl start serial-getty@ttyS0.service
+```
+
+Finally, run `virsh console VM_NAME` or `virsh console ID`.
+
 ### Configuration
 
 - Edit a VM's config file: `virsh edit VM_NAME`
