@@ -142,7 +142,7 @@ Finally, run `virsh console VM_NAME` or `virsh console ID`.
 
 ## Reference
 
-[Official SUSE Documentation for Virtualization on SLES 12](https://www.suse.com/documentation/sles-12/singlehtml/book_virt/book_virt.html)
-[Virtual Machine Manager](https://virt-manager.org/)
-[Live disk backup](https://wiki.libvirt.org/page/Live-disk-backup-with-active-blockcommit)
-[Backup scripts](https://gist.github.com/cabal95/e36c06e716d3328b512b)
+- [Official SUSE Documentation for Virtualization on SLES 12](https://www.suse.com/documentation/sles-12/singlehtml/book_virt/book_virt.html)
+- [Virtual Machine Manager](https://virt-manager.org/)
+- [Live disk backup](https://wiki.libvirt.org/page/Live-disk-backup-with-active-blockcommit)
+- [Backup scripts](https://gist.github.com/cabal95/e36c06e716d3328b512b)
