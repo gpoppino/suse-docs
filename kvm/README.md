@@ -76,13 +76,13 @@ Otherwise, use _-c_ or _--connect_:
 
 ### Connecting to the console
 
-Procedure for SLES11:
+Procedure for SLES11 (inside de VM):
 
 1. Edit _/etc/inittab_ and uncomment the following line: `S0:12345:respawn:/sbin/agetty -L 9600 ttyS0 vt102`
 2. Run `telinit q`
-3. If you want to login with root, edit _/etc/securetty_ and add the _ttyS0_.
+3. If you want to login with root, edit _/etc/securetty_ and add _ttyS0_.
 
-In SLES12:
+In SLES12 (inside the VM):
 
 1. Run the following commands:
 
