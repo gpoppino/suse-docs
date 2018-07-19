@@ -140,6 +140,20 @@ Finally, run `virsh console VM_NAME` or `virsh console ID`.
 - List networks: `virsh net-list`
 - Edit an existing network: `virsh net-edit NETWORK_NAME`
 
+### Sharing a host directory to access in the guest
+
+In _virt-manager_:
+
+1. Go to _Hardware details -> Add Hardware -> Filesystem (Passthrough)_
+2. In _Source path_ add the path to the directory to share.
+3. In _Target path_ add the share name.
+
+In the Guest VM, run:
+
+1. `mount -t 9p -o trans=virtio shareName /mnt`
+
+Where _shareName_ is the name of the share in step 3 and _/mnt_ is the mount point you choose to mount the share.
+
 ## Reference
 
 - [Official SUSE Documentation for Virtualization on SLES 12](https://www.suse.com/documentation/sles-12/singlehtml/book_virt/book_virt.html)
