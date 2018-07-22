@@ -121,6 +121,18 @@ Finally, run `virsh console VM_NAME` or `virsh console ID`.
 
 ### Cloning and Snapshotting
 
+There are different types of snapshots:
+
+1. Internal: Snapshots that are saved into the qcow2 file of the original VM Guest.
+2. External: When creating an external snapshot, the original qcow2 file is saved and made read-only, while a new qcow2 file is created to hold the changes. External snapshots are useful when performing backups of VM Guests.
+
+Also the snapshots can be:
+
+1. Live: Snapshots created when the original VM Guest is running.
+2. Offline: Snapshot created from a VM Guest that is shut off.
+
+How to:
+
 - Clone a VM in a simple way (domain/VM must be paused or shutoff): `virt-clone --original ORIGINAL_VM_NAME --auto-clone`
 - Clone a VM with one disk (domain/VM must be paused or shutoff): `virt-clone --connect qemu:///system --original ORIGINAL_VM_NAME --name MY_CLONE --file my_clone.qcow2`
 - Take a snapshot of a VM: `virsh snapshot-create-as --domain VM_NAME --name "VM_NAME_SNAPHOST01" --description "My VM_NAME snapshot"`
