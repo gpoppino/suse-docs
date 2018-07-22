@@ -4,6 +4,10 @@
 
 ![KVM](Kernel-based_Virtual_Machine.svg)
 
+### KVM Hardware requirements
+
+On the AMD64/Intel 64 architecture, you can test whether your CPU supports hardware virtualization with the following command: `egrep '(vmx|svm)' /proc/cpuinfo`
+
 ## Libvirt Support
 
 ![Libvirt](libvirt_support.svg)
