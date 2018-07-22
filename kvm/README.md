@@ -125,6 +125,10 @@ Finally, run `virsh console VM_NAME` or `virsh console ID`.
 
 ### Cloning and Snapshotting
 
+Definition:
+
+Snapshots let you restore the state of the machine at a particular point in time. VM Guest snapshots are snapshots of the complete virtual machine including the state of CPU, RAM, devices, and the content of all writable disks.
+
 There are different types of snapshots:
 
 1. Internal: Snapshots that are saved into the qcow2 file of the original VM Guest.
@@ -144,12 +148,26 @@ How to:
 - Revert to a snapshot: `virsh snapshot-revert --domain VN_NAME --snapshotname VM_NAME_SNAPSHOT01 --running`
 - Delete an snapshot: `virsh snapshot-delete --domain VM_NAME --snapshotname VM_NAME_SNAPSHOT01`
 
-### Pools
+### Pools and Volumes
+
+Definitions:
+
+1. A _Storage Volume_ is storage device that can be assigned to a guest (physical or a file).
+2. A _Storage Pool_  is a storage resource on the VM Host Server that can be used for storing volumes.
+
+Types: file system (dir), physical device (disk), pre-formatted block device (fs - auto mounts the filesystem), iSCSI Target (iscsi), LVM Volume Group (logical), Multipath Devices (mpath), Network Exported Directory (netfs), SCSI Host Adapter (scsi), RADOS Block Device/Ceph (rbd), etc.
+
+How to:
 
 - List pools: `virsh pool-list`
-- See pool configuration: `virsh pool-dumpxml POOL_NAME`
-- Edit an existing pool configuration: `virsh pool-edit POOL_NAME`
-- Create a new pool: `virsh pool-create-as --name mypool --type dir --target /mnt`
+- Obtain information about a pool: `virsh pool-info POOL`
+- List volumes in a pool: `virsh vol-list POOL --details`
+- See pool configuration: `virsh pool-dumpxml POOL`
+- Edit an existing pool configuration: `virsh pool-edit POOL`
+- Create a new pool of type _dir_: `virsh pool-create-as --name mypool --type dir --target /mnt`
+- Create a new volume in a pool: `virsh vol-create-as mypool myvol 20GB --format qcow2`
+- Clone a volume: `virsh vol-clone myvol myvol-clone --pool mypool`
+- Attach a volume to a guest domain: `virsh attach-disk sles12sp3 /var/lib/libvirt/images/myvol.qcow2 sda2`
 
 ### Networking
 
