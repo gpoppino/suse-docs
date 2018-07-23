@@ -217,3 +217,4 @@ Where _shareName_ is the name of the share in step 3 and _/mnt_ is the mount poi
 - [Live disk backup](https://wiki.libvirt.org/page/Live-disk-backup-with-active-blockcommit)
 - [Backup scripts](https://gist.github.com/cabal95/e36c06e716d3328b512b)
 - [Virtual Networks](https://wiki.libvirt.org/page/VirtualNetworking#Virtual_Networking)
+- [libguestfs tools](https://www.suse.com/documentation/sles-12/singlehtml/book_virt/book_virt.html#chap.guestfs)
