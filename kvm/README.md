@@ -2,6 +2,10 @@
 
 ## KVM Diagram
 
+KVM is a full virtualization solution for the AMD64/Intel 64 and the z Systems architectures supporting hardware virtualization.
+
+VM Guests (virtual machines), virtual storage, and virtual networks can be managed with QEMU tools directly, or with the libvirt-based stack.
+
 ![KVM](Kernel-based_Virtual_Machine.svg)
 
 ### KVM Hardware requirements
@@ -9,6 +13,10 @@
 On the AMD64/Intel 64 architecture, you can test whether your CPU supports hardware virtualization with the following command: `egrep '(vmx|svm)' /proc/cpuinfo`
 
 ## Libvirt Support
+
+libvirt is a library that provides a common API for managing popular virtualization solutions, among them KVM, LXC, and Xen. The library provides a normalized management API for these virtualization solutions, allowing a stable, cross-hypervisor interface for higher-level management tools. The library also provides APIs for management of virtual networks and storage on the VM Host Server. The configuration of each VM Guest is stored in an XML file.
+
+With libvirt you can also manage your VM Guests remotely. It supports TLS encryption, x509 certificates and authentication with SASL. This enables managing VM Host Servers centrally from a single workstation, alleviating the need to access each VM Host Server individually. 
 
 ![Libvirt](libvirt_support.svg)
 
@@ -36,7 +44,7 @@ Or
 
 ![KVM Server and KVM Tools](https://www.suse.com/documentation/sles-12/singlehtml/book_virt/images/yast2_hypervisors.png)
 
-### Tools
+### Libvirt Tools
 
 Some of the command line tools are:
 
@@ -50,7 +58,7 @@ Graphical tools are:
 - virt-manager: GUI to work with VMs.
 - virt-viewer: display a graphical console for a VM.
 
-### Connecting
+### Connecting to a libvirt daemon
 
 Set the variable _LIBVIRT_DEFAULT_URI_ to:
 
@@ -78,7 +86,7 @@ Otherwise, use _-c_ or _--connect_:
 - Reboot a VM: `virsh reboot VM_NAME`
 - Delete a VM: `virsh undefine VM_NAME; virsh vol-delete --pool default VM_IMAGE.qcow2`
 
-### Connecting to the console
+### Connecting to the console of a Guest VM
 
 Procedure for SLES11 (inside de VM):
 
@@ -97,7 +105,7 @@ In SLES12 (inside the VM):
 
 Finally, run `virsh console VM_NAME` or `virsh console ID`.
 
-### Configuration
+### Configuration of a Guest VM
 
 - Edit a VM's config file: `virsh edit VM_NAME`
 
@@ -121,9 +129,9 @@ Finally, run `virsh console VM_NAME` or `virsh console ID`.
 ### Working with disk images
 
 - Add 5GB to an existing disk image: `qemu-img resize my_image.qcow2 +5G`
-- Convert from HyperV to KVM: `qemu-img convert -O qcow2 source.vhdx output_image.qcow2`
+- Convert from HyperV to KVM disk image: `qemu-img convert -O qcow2 source.vhdx output_image.qcow2`
 
-### Cloning and Snapshotting
+### Cloning and Snapshots
 
 Definition:
 
@@ -148,7 +156,7 @@ How to:
 - Revert to a snapshot: `virsh snapshot-revert --domain VN_NAME --snapshotname VM_NAME_SNAPSHOT01 --running`
 - Delete an snapshot: `virsh snapshot-delete --domain VM_NAME --snapshotname VM_NAME_SNAPSHOT01`
 
-### Pools and Volumes
+### Storage: Pools and Volumes
 
 Definitions:
 
@@ -169,10 +177,24 @@ How to:
 - Clone a volume: `virsh vol-clone myvol myvol-clone --pool mypool`
 - Attach a volume to a guest domain: `virsh attach-disk sles12sp3 /var/lib/libvirt/images/myvol.qcow2 sda2`
 
-### Networking
+### Virtual Networks
+
+A virtual network is a computer network which does not consist of a physical network link, but rather uses a virtual network link. Virtual networks are based on virtual devices that connect virtual machines inside a hypervisor. They allow outgoing traffic translated to the LAN and are provided with DHCP and DNS services. Virtual networks can be either isolated, or forwarded to a physical network.
+
+Types of virtual networks:
+
+1. Isolated: Guests inside an _isolated_ virtual network can communicate with each other, but cannot communicate with guests outside the virtual network. Also, guests not belonging to the isolated virtual network cannot communicate with guests inside.
+2. Forwarded: guests inside a _forwarded_ (NAT, network address translation) virtual network can make any outgoing network connection they request. Incoming connections are allowed from VM Host Server, and from other guests connected to the same virtual network. All other incoming connections are blocked by iptables rules.
+
+How to:
 
 - List networks: `virsh net-list`
+- Get info about a network: `virsh net-info NETWORK_NAME`
+- Start a network: `virsh net-start NETWORK_NAME`
+- Stop a network: `virsh net-destroy NETWORK_NAME`
 - Edit an existing network: `virsh net-edit NETWORK_NAME`
+- Get a list of the interfaces of a VM: `virsh domiflist VM_NAME`
+- Get addresses (lease by DHCP) of interfaces of a VM: `virsh domifaddr VM_NAME`
 
 ### Sharing a host directory to access in the guest
 
@@ -194,3 +216,4 @@ Where _shareName_ is the name of the share in step 3 and _/mnt_ is the mount poi
 - [Virtual Machine Manager](https://virt-manager.org/)
 - [Live disk backup](https://wiki.libvirt.org/page/Live-disk-backup-with-active-blockcommit)
 - [Backup scripts](https://gist.github.com/cabal95/e36c06e716d3328b512b)
+- [Virtual Networks](https://wiki.libvirt.org/page/VirtualNetworking#Virtual_Networking)
