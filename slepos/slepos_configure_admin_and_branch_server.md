@@ -312,3 +312,14 @@ posAdmin --DN cn=xorg.conf,cn=cr-default,cn=global,o=myorg,c=ar \
 --modify --scConfigFileSyncTemplate --scConfigFile /etc/X11/xorg.conf \
 --scMust TRUE  --scBsize 1024 --scConfigFileLocalPath /srv/SLEPOS/config/xorg.conf.pos
 ```
+
+- How to create 32-bit images on a 64-bit machine
+```
+mkdir /var/lib/SLEPOS/system/graphical-default
+cp -R /usr/share/kiwi/image/SLEPOS/graphical-3/* /var/lib/SLEPOS/system/graphical-default/
+cd /var/lib/SLEPOS/system/
+
+linux32 kiwi --prepare ./graphical-default --root ./chroot/graphical-default
+linux32 kiwi --create ./chroot/graphical-default --destdir ./images/graphical-default
+```
+Also download the 32-bit repositories with the Subscription Management Tool (SMT) and update the _config.xml_ file to reference them.
